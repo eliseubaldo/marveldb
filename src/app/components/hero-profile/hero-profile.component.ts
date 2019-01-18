@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MarveldataService } from '../../services/marveldata.service';
 import { ActivatedRoute } from '@angular/router';
+import { find } from 'lodash';
 
 @Component({
   selector: 'app-hero-profile',
@@ -12,6 +13,7 @@ export class HeroProfileComponent implements OnInit {
   hero$: object;
   editing = '';
   editHero$: object;
+  affiliatedGroups: any;
 
   constructor(private data: MarveldataService, private route: ActivatedRoute) {
     this.route.params.subscribe( params => this.hero$ = params.id);
@@ -20,6 +22,9 @@ export class HeroProfileComponent implements OnInit {
   ngOnInit() {
     this.data.getHero(this.hero$).subscribe(
       data => this.hero$ = data
+    );
+    this.data.getAffiliatedGroups().subscribe (
+      data => this.affiliatedGroups = data
     );
   }
 
@@ -38,6 +43,11 @@ export class HeroProfileComponent implements OnInit {
     this.data.getAffiliatedGroups().subscribe (
       data => this.editHero$['affiliated-group'] = data
     );
+  }
+
+  checkGroup(group) {
+    const found = find(this.hero$['affiliated-group'], ['name', group]);
+    return !found ? false : true;
   }
 
 }
