@@ -1,0 +1,18 @@
+.hero-profile{
+    display: flex;
+
+    &__body {
+        flex-grow: 2;
+    }
+
+    &__picture {
+        flex-grow:1;
+        
+        img {
+            max-width: 200px;
+            border-radius: 7px;
+            padding: 20px;
+            background-color: white;            
+        }
+    }
+}

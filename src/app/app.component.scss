@@ -1,0 +1,10 @@
+.appgrid {
+    display: grid;
+    height: 100vh;
+    grid-template-columns: auto;
+    grid-template-rows: auto 1fr auto;    
+}
+
+main {
+    padding:20px 0;
+}
