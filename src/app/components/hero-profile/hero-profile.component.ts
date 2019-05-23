@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MarveldataService } from '../../services/marveldata.service';
 import { ActivatedRoute } from '@angular/router';
-import { find } from 'lodash';
 
 @Component({
   selector: 'app-hero-profile',
@@ -34,20 +33,11 @@ export class HeroProfileComponent implements OnInit {
     } else {
       this.newHero();
     }
-
     return editType === 'new' ? this.editing = 'new' : this.editing = 'current';
   }
 
   newHero() {
     this.editHero$ = {};
-    this.data.getAffiliatedGroups().subscribe (
-      data => this.editHero$['affiliated-group'] = data
-    );
-  }
-
-  checkGroup(group) {
-    const found = find(this.hero$['affiliated-group'], ['name', group]);
-    return !found ? false : true;
   }
 
 }

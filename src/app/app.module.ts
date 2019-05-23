@@ -9,20 +9,23 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HeroesListComponent } from './components/heroes-list/heroes-list.component';
 import { VillainsListComponent } from './components/villains-list/villains-list.component';
 import { HeroProfileComponent } from './components/hero-profile/hero-profile.component';
-
+import { HeroEditorComponent } from './components/hero-profile/hero-editor/hero-editor.component';
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     HeroesListComponent,
     VillainsListComponent,
-    HeroProfileComponent
+    HeroProfileComponent,
+    HeroEditorComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NavigationModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

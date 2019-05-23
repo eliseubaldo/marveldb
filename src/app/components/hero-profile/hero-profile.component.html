@@ -24,58 +24,22 @@
                         <h5 class="card-title">Name: {{ hero$.name }}</h5>
                         <p class="card-text"><strong>Real name:</strong> {{ hero$.realname }}</p>
                         <p> <strong>Group Affiliations:</strong> <span *ngFor="let group of hero$['affiliated-group']"> {{ group.name }}, </span> </p>                  
-                    </div>              
+                    </div>
                     <div class="hero-profile__picture">
                         <img src="{{ hero$.picture }}" alt="" style="float:right;">
                     </div>
                 </div>
 
                 <div class="card-body hero-profile"  *ngIf="editing === 'current' || editing === 'new'">
-                    <form>
-                        <div class="form-group">
-                          <label for="name">Name:</label>                          
-                            <input type="text" class="form-control" id="name" placeholder="{{ editHero$.name }}">                          
-                        </div>
-                        <div class="form-group">
-                          <label for="realname">Real name:</label>                          
-                            <input type="text" class="form-control" id="realname" placeholder="{{ editHero$.realname }}">                          
-                        </div>
-                        <div class="form-group">
-                            <label for="picture">Picture:</label>                            
-                              <input type="text" class="form-control" id="picture" placeholder="{{ editHero$.picture }}">                           
-                        </div>
-                        
-                        <div class="form-group">
-                            <div class="form-check form-check-inline" *ngFor="let group of affiliatedGroups; let i = index">
-                                <input class="form-check-input" type="checkbox" id="{{i+'checkbox'}}" [value]="group.name" [checked]="checkGroup(group.name)">
-                                <label class="form-check-label" for="{{i+'checkbox'}}">{{ group.name }}</label>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                          <div class="col-sm-10">
-                            <button type="submit" class="btn btn-primary">Save</button>
-                            <button class="btn btn-primary left-spacing" (click)="editing = ''">Cancel</button>
-                          </div>
-                        </div>
-                    </form>
-                                   
+                    <app-hero-editor [hero]="hero$" [affiliatedGroups]="affiliatedGroups" *ngIf="editing === 'current'"></app-hero-editor>
+                    <app-hero-editor [hero]="editHero$" [affiliatedGroups]="affiliatedGroups" *ngIf="editing === 'new'"></app-hero-editor>
                     
                 </div>
-
-
-
+                <div class="card-footer text-right" *ngIf="editing === 'current' || editing === 'new'">
+                        <button type="button" class="btn btn-danger" (click)="editing= ''">Cancel</button>
+                </div>
             </div>
-
-            
-
-
-
-
         </div>
-
     </div>
-   
   </div>
-  
 </div>
